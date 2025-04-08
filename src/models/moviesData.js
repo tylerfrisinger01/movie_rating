@@ -1,6 +1,5 @@
-import { Movie } from "./Movie";
 
-export const movies: Movie[] = [
+const movies = [
   {
     id: 1,
     title: "The Matrix",
@@ -152,3 +151,5 @@ export const movies: Movie[] = [
     description: "A jazz musician and an aspiring actress pursue their dreams in Los Angeles."
   },
 ];
+
+module.exports = { movies };

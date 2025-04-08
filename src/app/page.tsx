@@ -1,15 +1,19 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MovieCard } from '../components/MovieCard';
 import { Movie, MovieService } from '../models/Movie';
 
 export default function Home() {
-  const [moviesState, setMoviesState] = useState<Movie[]>(MovieService.getMovies());
+  const [moviesState, setMoviesState] = useState<Movie[]>([]);
+  
+  useEffect(() => {
+    MovieService.getMovies().then(setMoviesState);
+  }, []);
 
   const handleRate = async (movieId: number, newRating: number) => {
-    const updatedMovie = await MovieService.rateMovie(movieId, newRating);
+    await MovieService.rateMovie(movieId, newRating);
     setMoviesState(prev => 
-      prev.map(movie => movie.id === movieId ? updatedMovie : movie)
+      prev.map(movie => movie.id === movieId ? { ...movie, rating: newRating } : movie)
     );
   };
 

@@ -15,7 +15,7 @@ export async function fetchTMDBMovies(): Promise<TMDBMovie[]> {
     }
   };
 
-  const pages = [1, 2, 3];
+  const pages = [1, 2, 3, 4];
   const allMovies: TMDBMovie[] = [];
 
   for (const page of pages) {

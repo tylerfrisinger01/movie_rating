@@ -17,11 +17,10 @@ app.use((req, res, next) => {
 
 
 app.post('/api/rate', async (req, res) => {
-  console.log('Recieved rating update:', req.body);
+  
   try {
-    const { movieId, rating } = req.body;
-    const result = await submitRating(movieId, rating);
-    console.log('updating results: ', result)
+    const movieData = req.body;
+    const result = await submitRating(movieData);
     res.json(result);
   } catch (error) {
     res.status(500).json({ error: error.message });

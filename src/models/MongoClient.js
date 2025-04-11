@@ -33,14 +33,27 @@ export async function fetchRatings(movie_id) { //movie_id
   } 
 }
 
-export async function submitRating(movie_id, newRating) {
+export async function submitRating(movieData) {
   const collection = await connectDB();
   try {
+
+    const movie_id = Number(movieData.id);
+
+    if (isNaN(movie_id)) {
+      throw new Error("Invalid movie ID format");
+    }
     
     await collection.updateOne(
-      { id: Number(movie_id) },
-      { $set: { rating: Number(newRating) } },
-      { upsert: true},
+      { id: movie_id },
+      {
+      $set: {
+        id: movie_id,
+        title: String(movieData.title),
+        rating: Number(movieData.rating),
+        description: String(movieData.description),
+        }
+      },
+      { upsert: true }
     );
     return { message: "Rating saved!" };
     

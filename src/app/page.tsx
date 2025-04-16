@@ -8,6 +8,7 @@ import React from 'react';
 export default function Home() {
   const [moviesState, setMoviesState] = useState<Movie[]>([]);
   const [tmdbMovies, setTmdbMovies] = useState<TMDBMovie[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>('');
   
 
   useEffect(() => {
@@ -82,6 +83,10 @@ export default function Home() {
     }
   };
 
+  const filteredMovies = moviesState.filter(movie =>
+    movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="min-h-screen p-8 bg-pattern">
       <header className="mb-16 text-center">
@@ -96,8 +101,17 @@ export default function Home() {
       </header>
       
       <main className="max-w-7xl mx-auto">
+        <div className="mb-8 max-w-md mx-auto">
+          <input
+            type="text"
+            placeholder="Search movies by title..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500"
+          />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {moviesState
+          {filteredMovies
             .filter(movie => 
               movie?.id && 
               typeof movie.title === 'string' && 

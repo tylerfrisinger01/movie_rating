@@ -20,6 +20,7 @@ app.post('/api/rate', async (req, res) => {
   
   try {
     const movieData = req.body;
+    // console.log("movieData", movieData);
     const result = await submitRating(movieData);
     res.json(result);
   } catch (error) {

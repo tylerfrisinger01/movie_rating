@@ -3,6 +3,7 @@ export interface TMDBMovie {
   title: string;
   rating?: number;
   overview: string;
+  poster_path: string;
   // Add other fields we want from TMDB
 }
 

@@ -22,16 +22,6 @@ async function connectDB() {
   }
 }
 
-export async function fetchRatings(movie_id) { //movie_id
-  const collection = await connectDB();
-  try {
-    const ratings = await collection.find({ movie_id: Number(movie_id) }).toArray();
-    return ratings;
-  } catch (error) {
-    console.error("Error fetching ratings", error);
-    return [];
-  } 
-}
 
 export async function submitRating(movieData) {
   const collection = await connectDB();
@@ -51,6 +41,7 @@ export async function submitRating(movieData) {
         title: String(movieData.title),
         rating: Number(movieData.rating),
         description: String(movieData.description),
+        poster_path: String(movieData.poster_path)
         }
       },
       { upsert: true }

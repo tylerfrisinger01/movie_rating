@@ -3,7 +3,7 @@ export interface Movie {
   title: string;
   rating: number;
   description: string;
-  poster_path?: string;
+  poster_path: string;
 }
 
 export class MovieService {

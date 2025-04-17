@@ -41,7 +41,7 @@ export async function submitRating(movieData) {
         title: String(movieData.title),
         rating: Number(movieData.rating),
         description: String(movieData.description),
-        poster_path: String(movieData.poster_path)
+        backdrop_path: String(movieData.backdrop_path)
         }
       },
       { upsert: true }

@@ -11,7 +11,7 @@ export const MovieCard = ({ movie, onRate }: MovieCardProps) => {
     <div className="movie-card p-6 bg-white rounded-xl shadow-lg hover:shadow-xl">
       <div className="mb-4 relative">
         <img
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} // assuming your movie object has an imagePath field
+          src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} // assuming your movie object has an imagePath field
           alt={movie.title}
           className="w-full h-48 object-cover rounded-lg mb-4"
         />

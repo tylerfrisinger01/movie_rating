@@ -1,5 +1,5 @@
 const express = require('express');
-const { submitRating, fetchRatings, fetchMovies } = require('../models/MongoClient');
+const { submitRating, fetchMovies } = require('../models/MongoClient');
 const mongoose = require('mongoose');
 const uri = "mongodb+srv://tfrisinger2:Friguy66@cluster0.9xgrj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 

@@ -31,14 +31,14 @@ export default function Home() {
           tmdbMovie.id && 
           tmdbMovie.title?.trim() && 
           tmdbMovie.overview?.trim() &&
-          tmdbMovie.poster_path
+          tmdbMovie.backdrop_path
         )
         .map(tmdbMovie => ({
           id: Number(tmdbMovie.id),
           title: tmdbMovie.title,
           rating: 0,
           description: tmdbMovie.overview,
-          poster_path: tmdbMovie.poster_path
+          backdrop_path: tmdbMovie.backdrop_path
         }));
 
         // console.log('Merged movies:', [...dbMovies, ...transformedMovies]);
@@ -64,7 +64,7 @@ export default function Home() {
             rating: newRating,
             title: movie.title || 'Unknown Title', // Fallback
             description: movie.description || 'No description', // Fallback
-            poster_path: movie.poster_path || "No movie poster" // Fallback
+            backdrop_path: movie.backdrop_path || "No movie poster" // Fallback
           };
         }
         return movie;
@@ -80,7 +80,7 @@ export default function Home() {
         title: movieToUpdate.title,
         description: movieToUpdate.description,
         rating: newRating,
-        poster_path: movieToUpdate.poster_path
+        backdrop_path: movieToUpdate.backdrop_path
       });
       // console.log(movieToUpdate.poster_path);
     } catch (error) {
@@ -130,7 +130,7 @@ export default function Home() {
                 title: movie.title,
                 rating: movie.rating,
                 description: movie.description,
-                poster_path: movie.poster_path
+                backdrop_path: movie.backdrop_path
               }}
               onRate={(newRating) => handleRate(movie.id, newRating)}
             />

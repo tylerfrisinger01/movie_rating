@@ -54,40 +54,6 @@ export default function Home() {
     fetchData();
   }, []);
 
-  const handleRate = async (movieId: number, newRating: number) => {
-
-    setMoviesState(prev => 
-      prev.map(movie => {
-        if (movie?.id === movieId) {
-          return {
-            ...movie,
-            rating: newRating,
-            title: movie.title || 'Unknown Title', // Fallback
-            description: movie.description || 'No description', // Fallback
-            backdrop_path: movie.backdrop_path || "No movie poster" // Fallback
-          };
-        }
-        return movie;
-      })
-    );
-  
-    try {
-      const movieToUpdate = moviesState.find(m => m?.id === movieId);
-      if (!movieToUpdate) return;
-  
-      await MovieService.rateMovie({
-        id: movieToUpdate.id,
-        title: movieToUpdate.title,
-        description: movieToUpdate.description,
-        rating: newRating,
-        backdrop_path: movieToUpdate.backdrop_path
-      });
-      // console.log(movieToUpdate.poster_path);
-    } catch (error) {
-      console.error("Rating failed:", error);
-    }
-  };
-
   const filteredMovies = moviesState.filter(movie =>
     movie.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -132,7 +98,6 @@ export default function Home() {
                 description: movie.description,
                 backdrop_path: movie.backdrop_path
               }}
-              onRate={(newRating) => handleRate(movie.id, newRating)}
             />
           ))}
         </div>

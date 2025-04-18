@@ -17,6 +17,10 @@
   .rating-star {
     @apply w-8 h-8 transition-transform duration-200 hover:scale-125;
   }
+
+  .rating-star-no-hover {
+    @apply w-8 h-8 transition-transform duration-200;
+  }
   
   .movie-card {
     @apply transform transition-all duration-300 hover:-translate-y-1;
